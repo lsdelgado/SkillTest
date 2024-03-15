@@ -32,6 +32,9 @@ with open("privateKey.pem") as f:
 
 WEBHOOK_URL = env("WEBHOOK_URL")
 
+STARKBANK_ENVIRONMENT = env("STARKBANK_ENVIRONMENT")
+STARKBANK_PROJECT_ID = env("STARKBANK_PROJECT_ID")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

@@ -1,22 +1,18 @@
 import starkbank
+from StarkBank.settings import PRIVATE_KEY, STARKBANK_ENVIRONMENT, STARKBANK_PROJECT_ID
 
-
-private_key_content = """-----BEGIN EC PRIVATE KEY-----
-MHQCAQEEIDFJtcnGx+Ff1UZ25MCtLJVEoKn2m0OIJj9UQBUGYqL2oAcGBSuBBAAK
-oUQDQgAE9aVOC9xjxK1AIMFO8obvEis4qSOJMo+dYszHP/E9Ie13xDKfj8OowiQv
-gpKyInwOwi/rYI+1NiqTF1fB19P1yA==
------END EC PRIVATE KEY-----
-"""
-
-user = starkbank.Project(
-    environment="sandbox", id="6274920858255360", private_key=private_key_content
-)
-
-starkbank.user = user
 
 def create_transfer(amount):
 
-    transfers = starkbank.transfer.create([
+    user = starkbank.Project(
+        environment=STARKBANK_ENVIRONMENT,
+        id=STARKBANK_PROJECT_ID,
+        private_key=PRIVATE_KEY,
+    )
+
+    starkbank.user = user
+
+    transfer = starkbank.transfer.create([
             starkbank.Transfer(
                 amount=amount,
                 bank_code="20018183",  
@@ -27,10 +23,7 @@ def create_transfer(amount):
                 name="Stark Bank S.A",
                 ),     
         ])
-
-    for transfer in transfers:
-        print(transfer)
-
-    print("CHEGOU NA TRANSFERS VIEWS")
+    
+    print("New transfer: ", transfer)
 
     return

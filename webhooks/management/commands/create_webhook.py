@@ -13,6 +13,4 @@ class Command(BaseCommand):
             subscriptions=["invoice"],
         )
 
-        print(WEBHOOK_URL)
-
         self.stdout.write("Created webhook", ending="")

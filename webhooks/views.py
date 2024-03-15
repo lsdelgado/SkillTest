@@ -16,9 +16,6 @@ class WebhookView(APIView):
         invoice_amount = invoice.get("nominalAmount")
         log_type = log.get("type")
 
-        print("Type: ", log_type)
-        print("Nominal amount: ", invoice_amount)
-
         if log_type == "credited":
             create_transfer(invoice_amount)
 
